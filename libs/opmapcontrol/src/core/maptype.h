@@ -98,7 +98,14 @@ namespace core {
             GoogleHybridKorea=4005,
 
             YandexMapRu = 5000,
-            Statkart_Topo2 = 5500
+            Statkart_Topo2 = 5500,
+
+            Kokudo_Standard = 6000,
+            Kokudo_Pale = 6001,
+            Kokudo_LCM25 = 6002,
+            Kokudo_RELIEF = 6003,
+            Kokudo_ORT = 6004
+
         };
         static QString StrByType(Types const& value)
         {

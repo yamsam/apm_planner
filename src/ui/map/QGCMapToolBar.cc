@@ -34,7 +34,12 @@ static const struct {
     { "ArcGIS Map", MapType::ArcGIS_Map },
     { "ArcGIS Terrain", MapType::ArcGIS_Terrain },
     { "ArcGIS World Topo", MapType::ArcGIS_WorldTopo },
-    { "Statkart Topo2", MapType::Statkart_Topo2 }
+    { "Statkart Topo2", MapType::Statkart_Topo2 },
+    { "Kokudo Hyouzyun", MapType::Kokudo_Standard},
+    { "Kokudo Tansyoku", MapType::Kokudo_Pale},
+    { "Kokudo ORT", MapType::Kokudo_ORT},
+    { "Kokudo Hyoukou", MapType::Kokudo_RELIEF},
+    { "Kokudo TochiZyouken", MapType::Kokudo_LCM25}
 };
 
 static const size_t sNumMapTypes = sizeof(sMapTypes) / sizeof(sMapTypes[0]);

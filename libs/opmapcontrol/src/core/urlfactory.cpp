@@ -487,6 +487,33 @@ namespace core {
                         return QString("http://opencache.statkart.no/gatekeeper/gk/gk.open_gmaps?layers=topo2&zoom=%1&x=%2&y=%3").arg(zoom).arg(pos.X()).arg(pos.Y());
                     }
                     break;
+
+        case MapType::Kokudo_Standard:
+            {
+                return QString("http://cyberjapandata.gsi.go.jp/xyz/std/%1/%2/%3.png").arg(zoom).arg(pos.X()).arg(pos.Y());
+            }
+            break;
+        case MapType::Kokudo_ORT:
+        {
+            return QString("http://cyberjapandata.gsi.go.jp/xyz/ort/%1/%2/%3.jpg").arg(zoom).arg(pos.X()).arg(pos.Y());
+        }
+            break;
+        case MapType::Kokudo_Pale:
+        {
+            return QString("http://cyberjapandata.gsi.go.jp/xyz/pale/%1/%2/%3.png").arg(zoom).arg(pos.X()).arg(pos.Y());
+        }
+            break;
+        case MapType::Kokudo_LCM25:
+        {
+            return QString("http://cyberjapandata.gsi.go.jp/xyz/lcm25k_2012/%1/%2/%3.png").arg(zoom).arg(pos.X()).arg(pos.Y());
+        }
+            break;
+        case MapType::Kokudo_RELIEF:
+        {
+            return QString("http://cyberjapandata.gsi.go.jp/xyz/relief/%1/%2/%3.png").arg(zoom).arg(pos.X()).arg(pos.Y());
+        }
+            break;
+
         default:
             break;
         }

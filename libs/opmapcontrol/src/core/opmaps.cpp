@@ -204,6 +204,16 @@ namespace core {
                                         qheader.setRawHeader("Referrer", "http://www.norgeskart.no/");
                                     }
                                     break;
+                case MapType::Kokudo_Standard:
+                case MapType::Kokudo_Pale:
+                case MapType::Kokudo_LCM25:
+                case MapType::Kokudo_RELIEF:
+                case MapType::Kokudo_ORT:
+                    {
+                    qheader.setRawHeader("Referrer", "http://www.xxx.xxx/");
+                    }
+                    break;
+
                 default:
                     break;
                 }
