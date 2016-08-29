@@ -1,5 +1,7 @@
-APM Planner 2.0
+APM Planner 2.0　地理院タイル対応版
 ===============
+**出典:**
+地理院タイル　http://maps.gsi.go.jp/development/ichiran.html
 
 **Support:**
 [ardupilot.com Support Forum for APM Planner 2.0](http://ardupilot.com/forum/viewtopic.php?f=82)
