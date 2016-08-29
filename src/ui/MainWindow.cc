@@ -1326,7 +1326,8 @@ void MainWindow::storeSettings()
 void MainWindow::configureWindowName()
 {
     QList<QHostAddress> hostAddresses = QNetworkInterface::allAddresses();
-    QString windowname = qApp->applicationName() + " " + qApp->applicationVersion();
+    QString mapname = QString::fromUtf8("\xe5\x9c\xb0\xe7\x90\x86\xe9\x99\xa2\xe3\x82\xbf\xe3\x82\xa4\xe3\x83\xab\xe5\xaf\xbe\xe5\xbf\x9c\xe7\x89\x88");
+    QString windowname = qApp->applicationName() + " " + mapname + " " + qApp->applicationVersion();
     bool prevAddr = false;
 
     windowname.append(" (" + QHostInfo::localHostName() + ": ");
