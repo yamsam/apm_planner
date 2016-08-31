@@ -443,6 +443,7 @@ FORMS += \
     src/ui/AP2DataPlot2D.ui \
     src/ui/dataselectionscreen.ui \
     src/ui/AboutDialog.ui \
+    src/ui/AboutChiriinMap.ui \
     src/ui/AP2DataPlotAxisDialog.ui \
     src/ui/AutoUpdateDialog.ui \
     src/uas/LogDownloadDialog.ui \
@@ -646,6 +647,7 @@ HEADERS += \
     src/ui/qcustomplot.h \
     src/globalobject.h \
     src/ui/AboutDialog.h \
+    src/ui/AboutChiriinMap.h \
     src/ui/uas/UASQuickViewTextLabel.h \
     src/uas/ApmUiHelpers.h \
     src/ui/AP2DataPlotAxisDialog.h \
@@ -676,7 +678,8 @@ HEADERS += \
     src/ui/EKFMonitor.h \
     src/Settings.h \
     src/logging.h \
-    src/uas/APMFirmwareVersion.h
+    src/uas/APMFirmwareVersion.h \
+    src/ui/AboutChiriinMap.h
 
 SOURCES += src/main.cc \
     src/QGCCore.cc \
@@ -866,6 +869,7 @@ SOURCES += src/main.cc \
     src/ui/qcustomplot.cpp \
     src/globalobject.cc \
     src/ui/AboutDialog.cc \
+    src/ui/AboutChiriinMap.cc \
     src/ui/uas/UASQuickViewTextLabel.cc \
     src/uas/ApmUiHelpers.cc \
     src/ui/AP2DataPlotAxisDialog.cc \
@@ -895,7 +899,8 @@ SOURCES += src/main.cc \
     src/ui/VibrationMonitor.cpp \
     src/ui/EKFMonitor.cpp \
     src/Settings.cpp \
-    src/uas/APMFirmwareVersion.cpp
+    src/uas/APMFirmwareVersion.cpp \
+    src/ui/AboutChiriinMap.cc
 
 MacBuild | WindowsBuild : contains(GOOGLEEARTH, enable) { #fix this to make sense ;)
     message(Including support for Google Earth)

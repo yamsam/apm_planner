@@ -66,6 +66,7 @@ This file is part of the QGROUNDCONTROL project
 #endif
 
 #include "AboutDialog.h"
+#include "AboutChiriinMap.h"
 
 // FIXME Move
 #include "PxQuadMAV.h"
@@ -1695,7 +1696,8 @@ void MainWindow::connectCommonActions()
 
     // About
     connect(ui.actionAbout_APM_Planner_2_0, SIGNAL(triggered()), this, SLOT(showAbout()));
-
+    // ChirinTail
+    connect(ui.actionAbout_ChiriinTail, SIGNAL(triggered()), this, SLOT(showChiriinMap()));
     // Check for updates
     connect(ui.actionCheck_For_Updates, SIGNAL(triggered()), &m_autoUpdateCheck, SLOT(forcedAutoUpdateCheck()));
 
@@ -2450,6 +2452,15 @@ bool MainWindow::x11Event(XEvent *event)
 void MainWindow::showAbout()
 {
     AboutDialog* dialog = new AboutDialog(this);
+    dialog->exec();
+    dialog->hide();
+    delete dialog;
+    dialog = NULL;
+}
+
+void MainWindow::showChiriinMap()
+{
+    AboutChiriinMap* dialog = new AboutChiriinMap(this);
     dialog->exec();
     dialog->hide();
     delete dialog;

@@ -204,6 +204,7 @@ public slots:
     /** @brief Show the application About box */
     void showAbout();
     /** @brief Add a communication link */
+    void showChiriinMap();
     void addLink();
     void addLink(int linkid);
     bool configLink(int linkid);

@@ -51,7 +51,7 @@
      <x>0</x>
      <y>0</y>
      <width>1080</width>
-     <height>22</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuMGround">
@@ -116,6 +116,7 @@
     <addaction name="actionDonate"/>
     <addaction name="separator"/>
     <addaction name="actionAbout_APM_Planner_2_0"/>
+    <addaction name="actionAbout_ChiriinTail"/>
    </widget>
    <widget class="QMenu" name="menuPerspectives">
     <property name="title">
@@ -602,6 +603,11 @@
   <action name="actionDonate">
    <property name="text">
     <string>Donate</string>
+   </property>
+  </action>
+  <action name="actionAbout_ChiriinTail">
+   <property name="text">
+    <string>地理院タイルについて</string>
    </property>
   </action>
  </widget>
