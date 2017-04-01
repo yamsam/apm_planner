@@ -66,6 +66,8 @@ PrimaryFlightDisplayQML::PrimaryFlightDisplayQML(QWidget *parent) :
             SLOT(setActiveUAS(UASInterface*)), Qt::UniqueConnection);
     setActiveUAS(UASManager::instance()->getActiveUAS());
 
+    // set video url
+    setVideoSource(QGC::videoSourceURL());
 }
 
 PrimaryFlightDisplayQML::~PrimaryFlightDisplayQML()
@@ -132,5 +134,11 @@ void PrimaryFlightDisplayQML::uasTextMessage(int uasid, int componentid, int sev
         root->setProperty("showStatusMessage", true);
         root->setProperty("statusMessageColor", "darkgreen");
     }
+}
 
+void PrimaryFlightDisplayQML::setVideoSource(QString text)
+{
+    QObject* root = m_declarativeView->rootObject();
+    root->setProperty("videosource", text);
+    QLOG_DEBUG() << "set root video source to " << root->property("videosource").toString() << endl;
 }

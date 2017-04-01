@@ -61,12 +61,14 @@ Item {
                 visible: !enableBackgroundVideo
         }
 
+        /*
         Rectangle {
                 id: videoImage // Just for testing
                 anchors { fill: parent; centerIn: parent }
                 color: "darkgrey"
                 visible: enableBackgroundVideo
         }
+        */
 
          transformOrigin: Item.Center
 

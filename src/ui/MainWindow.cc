@@ -2411,6 +2411,11 @@ void MainWindow::loadFirmwareUpdateView()
     }
 }
 
+void MainWindow::setVideoSource(QString text)
+{
+    pilotView->findChild<PrimaryFlightDisplayQML*>("PRIMARY_FLIGHT_DISPLAY_QML_DOCKWIDGET")->setVideoSource(text);
+}
+
 //void MainWindow::loadDataView(QString fileName)
 //{
 //    // Plot is now selected, now load data from file

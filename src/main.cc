@@ -35,6 +35,12 @@ This file is part of the QGROUNDCONTROL project
 #include <QtWidgets/QApplication>
 #include <fstream>
 
+#include <VLCQtCore/Common.h>
+#include <VLCQtQml/QmlPlayer.h>
+#include <VLCQtQml/Qml.h>
+#include <VLCQtQml/QmlVideoOutput.h>
+#include <VLCQtQml/QmlVideoPlayer.h>
+
 /* SDL does ugly things to main() */
 #ifdef main
 #undef main
@@ -93,6 +99,9 @@ int main(int argc, char *argv[])
     //qInstallMsgHandler( msgHandler );
 #endif
 
+    // Init application
+    QGCCore core(argc, argv);
+
     // Init logging
     // create filename and path for logfile like "apmlog_20160529.txt"
     // one logfile for every day. Size is not limited
@@ -132,8 +141,11 @@ int main(int argc, char *argv[])
     // install the message handler for logging
     qInstallMessageHandler(loggingMessageHandler);
 
+    // VLCQT
+    VlcCommon::setPluginPath(core.applicationDirPath() + "/plugins");
+    VlcQml::registerTypes();
+
     // start the application
-    QGCCore core(argc, argv);
     core.initialize();
     return core.exec();
 }

@@ -35,7 +35,7 @@ void GlobalObject::loadSettings()
     m_MAVLinklogDirectory = settings.value("MAVLINK_LOG_DIRECTORY", defaultMAVLinkLogDirectory()).toString();
     m_parameterDirectory = settings.value("PARAMETER_DIRECTORY", defaultParameterDirectory()).toString();
     m_missionDirectory = settings.value("MISSION_DIRECTORY", defaultMissionDirectory()).toString();
-
+    m_videoSourceURL = settings.value("VIDEO_SRC_URL", "").toString();
     settings.endGroup();
 }
 
@@ -49,7 +49,7 @@ void GlobalObject::saveSettings()
     QLOG_DEBUG() << "save tlog dir to:" << m_MAVLinklogDirectory;
     settings.setValue("PARAMETER_DIRECTORY", m_parameterDirectory);
     settings.setValue("MISSION_DIRECTORY", m_missionDirectory);
-
+    settings.setValue("VIDEO_SRC_URL", m_videoSourceURL);
     settings.sync();
 }
 
@@ -182,6 +182,16 @@ void GlobalObject::setMissionDirectory(const QString &dir)
 {
     QLOG_DEBUG() << "Set mission dir to:" << dir;
     m_missionDirectory = dir;
+}
+
+QString GlobalObject::videoSourceURL()
+{
+    return m_videoSourceURL;
+}
+
+void GlobalObject::setVideoSourceURL(const QString &src)
+{
+    m_videoSourceURL = src;
 }
 
 //

@@ -38,6 +38,7 @@ class PrimaryFlightDisplayQML : public QWidget
 public:
     explicit PrimaryFlightDisplayQML(QWidget *parent = 0);
     ~PrimaryFlightDisplayQML();
+    void setVideoSource(QString text);
 
 private slots:
     void setActiveUAS(UASInterface *uas);

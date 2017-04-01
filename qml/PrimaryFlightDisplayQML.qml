@@ -16,18 +16,17 @@
 
 import QtQuick 2.0
 import "./components"
+import VLCQt 1.1
 
 Rectangle {
     // Property Defintions
     id:root
 
-
     property bool enableBackgroundVideo: false
     property string statusMessage: ""
     property bool showStatusMessage: false
     property color statusMessageColor: statusMessageIndicator.messageColor
-
-
+    property alias videosource: videoplayer.url
 
     function activeUasSet() {
         rollPitchIndicator.rollAngle = Qt.binding(function() { return relpositionoverview.roll})
@@ -59,12 +58,57 @@ Rectangle {
         onTriggered: showStatusMessage = false
     }
 
+    VlcPlayer {
+        id: videoplayer
+        autoplay: false
+    }
+
+    VlcVideoOutput {
+        id: videooutput
+        source: videoplayer
+        anchors.fill: parent
+        visible: root.enableBackgroundVideo
+        fillMode: Vlc.Stretch
+
+    }
+
     RollPitchIndicator {
         id: rollPitchIndicator
 
         rollAngle: 0
         pitchAngle: 0
         enableBackgroundVideo: parent.enableBackgroundVideo
+    }
+
+    VideoButton{
+        id: video_play_button
+        anchors.bottom: parent.bottom
+        anchors.right: parent.right
+
+        width: 30
+        height: 30
+
+        image_src: "qrc:/files/images/actions/media-playback-stop.svg"
+        onClicked: {
+             videoplayer.stop()
+             root.enableBackgroundVideo = false
+        }
+    }
+
+    VideoButton{
+        id: video_stop_button
+        anchors.bottom: parent.bottom
+        anchors.right: video_play_button.left
+
+        width: 30
+        height: 30
+
+        image_src: "qrc:/files/images/actions/media-playback-start.svg"
+
+        onClicked: {
+            root.enableBackgroundVideo = true
+            videoplayer.play()
+        }
     }
 
     PitchIndicator {

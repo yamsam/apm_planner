@@ -316,6 +316,10 @@ INCLUDEPATH += \
     src/ui/configuration \
     src/output
 
+# VLCQT
+INCLUDEPATH += C:/vlcqt/include
+LIBS += -LC:/vlcqt/lib -lVLCQtCore -lVLCQtQml -lVLCQtWidgets
+
 FORMS += \
     src/ui/MainWindow.ui \
     src/ui/CommSettings.ui \
@@ -972,6 +976,7 @@ OTHER_FILES += \
 #INSTALLS            += sources target
 
 DISTFILES += \
-    qml/components/BarGauge.qml
+    qml/components/BarGauge.qml \
+    qml/components/VideoButton.qml
 
 

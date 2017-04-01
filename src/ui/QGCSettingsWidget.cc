@@ -82,6 +82,10 @@ void QGCSettingsWidget::showEvent(QShowEvent *evt)
         connect(ui->mavlinkDirSetButton, SIGNAL(clicked()), this, SLOT(setMAVLinkLogDir()));
         connect(ui->missionsSetButton, SIGNAL(clicked()), this, SLOT(setMissionsDir()));
 
+        // video stream
+        ui->videoSrcEdit->setText((QGC::videoSourceURL()));
+        connect(ui->videoSrcEdit, SIGNAL(editingFinished()), this, SLOT(setVideoSourceURL()));
+
         // Style
         MainWindow::QGC_MAINWINDOW_STYLE style = (MainWindow::QGC_MAINWINDOW_STYLE)MainWindow::instance()->getStyle();
         switch (style) {
@@ -198,6 +202,12 @@ void QGCSettingsWidget::setMissionsDir()
         QGC::setMissionDirectory(name);
         ui->missionsDirEdit->setText(name);
     }
+}
+
+void QGCSettingsWidget::setVideoSourceURL(){
+    QString url = ui->videoSrcEdit->text();
+    QGC::setVideoSourceURL(url);
+    MainWindow::instance()->setVideoSource(url);
 }
 
 void QGCSettingsWidget::setActiveUAS(UASInterface *uas)

@@ -27,6 +27,7 @@ private slots:
     void ratesChanged();
     void setBetaRelease(bool state);
     void setHideDonateButton(bool state);
+    void setVideoSourceURL();
 
     void setActiveUAS(UASInterface *uas);
 

@@ -114,6 +114,15 @@ const int APPLICATIONVERSION = 2024; // 2.0.24 [TODO] we should deprecate this v
         GlobalObject::sharedInstance()->setMissionDirectory(dir);
     }
 
+    inline QString videoSourceURL(){
+        return GlobalObject::sharedInstance()->videoSourceURL();
+    }
+
+    inline void setVideoSourceURL(const QString& url){
+        GlobalObject::sharedInstance()->setVideoSourceURL(url);
+    }
+
+
     //Returns the absolute parth to the files, data, qml support directories
     //It could be in 1 of 2 places under Linux
     inline QString shareDirectory(){

@@ -68,6 +68,9 @@ public:
     QString missionDirectory();
     void setMissionDirectory(const QString &dir);
 
+    QString videoSourceURL();
+    void setVideoSourceURL(const QString &src);
+
     QString shareDirectory();
 
 private:
@@ -78,7 +81,7 @@ private:
     QString m_MAVLinklogDirectory;
     QString m_parameterDirectory;
     QString m_missionDirectory;
-
+    QString m_videoSourceURL;
 };
 
 #endif // GLOBALOBJECT_H

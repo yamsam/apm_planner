@@ -246,6 +246,9 @@ public slots:
     /** @brief Load Terminal Console views */
     void loadTerminalView();
 
+    /** @brief Set Video Souce for Flight Display */
+    void setVideoSource(QString);
+
     /** @brief Show the online help for users */
     void showHelp();
     /** @brief Show the authors / credits */
