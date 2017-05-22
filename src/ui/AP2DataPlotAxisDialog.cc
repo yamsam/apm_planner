@@ -15,7 +15,7 @@ AP2DataPlotAxisDialog::AP2DataPlotAxisDialog(QWidget *parent) :
     //qRegisterMetaType<QList<GraphRange> >("QList<GraphRange>");
     qRegisterMetaType<QList<AP2DataPlotAxisDialog::GraphRange> >("QList<AP2DataPlotAxisDialog::GraphRange>");
     //connect(ui->graphTableWidget,SIGNAL(currentItemChanged(QTableWidgetItem*,QTableWidgetItem*)),this,SLOT(graphTableCurrentItemChanged(QTableWidgetItem*,QTableWidgetItem*)));
-    connect(ui->graphTableWidget,SIGNAL(itemSelectionChanged()),this,SLOT(graphTableItemSelectionChanged()));
+    //connect(ui->graphTableWidget,SIGNAL(itemSelectionChanged()),this,SLOT(graphTableItemSelectionChanged()));
     connect(ui->graphTableWidget,SIGNAL(cellDoubleClicked(int,int)),this,SLOT(cellDoubleClicked(int,int)));
     connect(ui->graphTableWidget,SIGNAL(cellChanged(int,int)),this,SLOT(cellChanged(int,int)));
 
@@ -183,6 +183,8 @@ void AP2DataPlotAxisDialog::applyButtonClicked()
         {
             graph.group = group;
             graph.isgrouped = true;
+            graph.min = ui->graphTableWidget->item(i,3)->text().toDouble();
+            graph.max = ui->graphTableWidget->item(i,4)->text().toDouble();
             checkbox->setChecked(true);
             emit graphAutoRange(name);
             emit graphAddedToGroup(name,group,m_graphScaleMap.value(name));

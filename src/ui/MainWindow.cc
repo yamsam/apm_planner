@@ -2086,7 +2086,7 @@ void MainWindow::UASCreated(UASInterface* uas)
     loadCustomWidgetsFromDefaults(uas->getSystemTypeName(), uas->getAutopilotTypeName());
 
 
-    if (uas->getAutopilotType() == MAV_AUTOPILOT_PIXHAWK)
+    if (uas->getAutopilotType() == MAV_AUTOPILOT_PX4)
     {
         // Dock widgets
         if (!detectionDockWidget)

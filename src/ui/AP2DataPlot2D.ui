@@ -92,36 +92,6 @@
                </widget>
               </item>
               <item>
-               <widget class="QCheckBox" name="errDisplayCheckBox">
-                <property name="text">
-                 <string>Show ERR</string>
-                </property>
-                <property name="checked">
-                 <bool>true</bool>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QCheckBox" name="evDisplayCheckBox">
-                <property name="text">
-                 <string>Show EV</string>
-                </property>
-                <property name="checked">
-                 <bool>true</bool>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QCheckBox" name="msgDisplayCheckBox">
-                <property name="text">
-                 <string>Show MSG</string>
-                </property>
-                <property name="checked">
-                 <bool>true</bool>
-                </property>
-               </widget>
-              </item>
-              <item>
                <spacer name="horizontalSpacer_3">
                 <property name="orientation">
                  <enum>Qt::Horizontal</enum>
@@ -133,19 +103,6 @@
                  </size>
                 </property>
                </spacer>
-              </item>
-              <item>
-               <widget class="QCheckBox" name="indexTypeCheckBox">
-                <property name="toolTip">
-                 <string extracomment="Switches between index or time on x axis"/>
-                </property>
-                <property name="toolTipDuration">
-                 <number>3</number>
-                </property>
-                <property name="text">
-                 <string>Use time on x-axis</string>
-                </property>
-               </widget>
               </item>
              </layout>
             </item>
@@ -207,88 +164,6 @@
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="layoutWidget">
-       <layout class="QHBoxLayout" name="horizontalLayout_4" stretch="5,1">
-        <item>
-         <widget class="QTableView" name="tableWidget"/>
-        </item>
-        <item>
-         <widget class="QGroupBox" name="tableSortGroupBox">
-          <property name="title">
-           <string>Sorting</string>
-          </property>
-          <layout class="QVBoxLayout" name="verticalLayout_7">
-           <property name="leftMargin">
-            <number>3</number>
-           </property>
-           <property name="topMargin">
-            <number>3</number>
-           </property>
-           <property name="rightMargin">
-            <number>3</number>
-           </property>
-           <property name="bottomMargin">
-            <number>3</number>
-           </property>
-           <item>
-            <widget class="QTreeWidget" name="sortSelectTreeWidget">
-             <column>
-              <property name="text">
-               <string notr="true">1</string>
-              </property>
-             </column>
-            </widget>
-           </item>
-           <item>
-            <layout class="QHBoxLayout" name="horizontalLayout_5">
-             <item>
-              <widget class="QPushButton" name="sortAcceptPushButton">
-               <property name="text">
-                <string>Accept</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QPushButton" name="sortCancelPushButton">
-               <property name="text">
-                <string>Cancel</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QPushButton" name="sortSelectAllPushButton">
-               <property name="text">
-                <string>Select All</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QPushButton" name="sortInvertSelectPushButton">
-               <property name="text">
-                <string>Invert Select</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <spacer name="horizontalSpacer_2">
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
-               <property name="sizeHint" stdset="0">
-                <size>
-                 <width>40</width>
-                 <height>20</height>
-                </size>
-               </property>
-              </spacer>
-             </item>
-            </layout>
-           </item>
-          </layout>
-         </widget>
-        </item>
-       </layout>
-      </widget>
      </widget>
      <widget class="DataSelectionScreen" name="dataSelectionScreen" native="true">
       <property name="minimumSize">
@@ -333,20 +208,6 @@
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="exportLogButton">
-       <property name="text">
-        <string>Export Log</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="exportKmlButton">
-       <property name="text">
-        <string>Export Kml</string>
-       </property>
-      </widget>
-     </item>
-     <item>
       <widget class="QPushButton" name="loadTLogButton">
        <property name="text">
         <string>Enable Log Playback</string>
@@ -375,20 +236,6 @@
       </widget>
      </item>
      <item>
-      <widget class="QCheckBox" name="jumpToLocationCheckBox">
-       <property name="text">
-        <string>Jump to location on Double Click</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QCheckBox" name="hideExcelView">
-       <property name="text">
-        <string>Hide Grid View</string>
-       </property>
-      </widget>
-     </item>
-     <item>
       <widget class="QPushButton" name="toKMLPushButton">
        <property name="text">
         <string>Log to Google Earth File</string>
@@ -407,13 +254,6 @@
         </size>
        </property>
       </spacer>
-     </item>
-     <item>
-      <widget class="QPushButton" name="sortShowPushButton">
-       <property name="text">
-        <string>Show Sort</string>
-       </property>
-      </widget>
      </item>
     </layout>
    </item>
