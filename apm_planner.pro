@@ -68,7 +68,7 @@ linux-g++-64 {
         DEFINES += Q_ARCHLINUX
     }
 
-} else : win32-msvc2012 | win32-msvc2013 {
+} else : win32-msvc2012 | win32-msvc2013 | win32-msvc2015{
     message(Windows build)
     CONFIG += WindowsBuild
 }  else : win32-g++|win64-g++ {
