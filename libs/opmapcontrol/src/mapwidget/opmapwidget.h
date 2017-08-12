@@ -380,6 +380,7 @@ namespace mapcontrol
         void SetUavPic(QString UAVPic);
         QMap<int, UAVItem*> UAVS;
 
+
     private:
         internals::Core *core;
         QGraphicsScene mscene;
@@ -528,6 +529,9 @@ namespace mapcontrol
             emit zoomChanged(ZoomReal());
         }
 
+        QImage makeHeightMap(MapType::Types maptype);
+        internals::RectLatLng CurrentViewArea();
+        void CurrentViewArea(float& minLng, float& maxLng, float& minLat, float& maxLat);
     };
 }
 #endif // OPMAPWIDGET_H

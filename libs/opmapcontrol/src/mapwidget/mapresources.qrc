@@ -17,5 +17,9 @@
         <file>images/airplanepip.png</file>
         <file>images/EasystarBlue.png</file>
         <file>images/mapquad.png</file>
+        <file alias="ball">images/ball.obj</file>
+        <file alias="toyplane">images/toyplane.obj</file>
+        <file alias="plane">images/plane.obj</file>
+        <file alias="pin">images/pipe2.obj</file>
     </qresource>
 </RCC>

@@ -31,6 +31,10 @@ public slots:
     void setMapType();
     void goHome();
 
+signals:
+    void change3dMap();
+    void change2dMap();
+
 private:
     void loadSettings();
     void storeSettings();

@@ -4,6 +4,9 @@
 #include "UAS.h"
 #include "QGCMapTool.h"
 #include "ui_QGCMapTool.h"
+#include "surfacegraph.h"
+#include "rectlatlng.h"
+#include "QGC3DMapWidget.h"
 
 #include <QAction>
 #include <QMenu>
@@ -33,6 +36,13 @@ QGCMapTool::QGCMapTool(QWidget *parent) :
     {
         activeUASSet(UASManager::instance()->getActiveUAS());
     }
+
+    m_map3d = new QGC3DMapWidget(this);
+    QHBoxLayout *hLayout = new QHBoxLayout(ui->page2);
+    hLayout->addWidget(m_map3d);
+
+    connect(ui->toolBar, SIGNAL(change2dMap()), this, SLOT(change2dMap()));
+    connect(ui->toolBar, SIGNAL(change3dMap()), this, SLOT(change3dMap()));
 }
 
 void QGCMapTool::setMapZoom(int zoom)
@@ -113,4 +123,31 @@ void QGCMapTool::gpsFixChanged(int, const QString &)
 void QGCMapTool::satelliteCountChanged(int value, const QString &)
 {
     ui->satsLabel->setText(tr("SATS: %1").arg(value));
+}
+
+void QGCMapTool::change2dMap()
+{
+    ui->stackedWidget->setCurrentIndex(0);
+}
+
+void QGCMapTool::change3dMap()
+{
+    float minLng, maxLng, minLat, maxLat;
+    ui->map->CurrentViewArea(minLng, maxLng, minLat, maxLat);
+
+    qDebug() << "area=(" << minLng << ", " << maxLng << "),(" << minLat<< ","  << maxLat << ")";
+    qDebug() << "len lng =" << maxLng - minLng ;
+    qDebug() << "len lat =" << maxLat - minLat ;
+
+    m_map3d->setZAxis(minLat, maxLat);
+    m_map3d->setXAxis(minLng, maxLng);
+    m_map3d->setYAxis(0, 0.5);
+
+    QImage heightimg = ui->map->makeHeightMap(MapType::Kokudo_HEIGHT1);
+    m_map3d->setImage(heightimg);
+
+    QImage textureimg = ui->map->makeHeightMap( ui->map->GetMapType());
+    m_map3d->setTexture(textureimg);
+
+    ui->stackedWidget->setCurrentIndex(1);
 }

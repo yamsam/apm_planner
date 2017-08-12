@@ -99,6 +99,20 @@
     </widget>
    </item>
    <item>
+    <widget class="QPushButton" name="HeightButton">
+     <property name="text">
+      <string>3D</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="mapButton">
+     <property name="text">
+      <string>2D</string>
+     </property>
+    </widget>
+   </item>
+   <item>
     <spacer name="horizontalSpacer_3">
      <property name="orientation">
       <enum>Qt::Horizontal</enum>

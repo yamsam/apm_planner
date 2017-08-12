@@ -108,7 +108,8 @@ namespace core {
             qDebug()<<"Correct GoogleVersion";
 #endif //DEBUG_URLFACTORY
             setIsCorrectGoogleVersions(true);
-            QString url = "http://maps.google.com";
+//            QString url = "http://maps.google.com";
+            QString url = "https://maps-api-ssl.google.com/maps/api/js?v=3&sensor=false";
 
             qheader.setUrl(QUrl(url));
             qheader.setRawHeader("User-Agent",UserAgent);
@@ -126,7 +127,7 @@ namespace core {
                 return;
             }
             QString html=QString(reply->readAll());
-            QRegExp reg("\"*http://mt0.google.com/vt/lyrs=m@(\\d*)",Qt::CaseInsensitive);
+            QRegExp reg("\"*https://mt0.google.com/vt/lyrs=m@(\\d*)",Qt::CaseInsensitive);
             if(reg.indexIn(html)!=-1)
             {
                 QStringList gc=reg.capturedTexts();
@@ -137,7 +138,7 @@ namespace core {
 #endif //DEBUG_URLFACTORY
             }
 
-            reg=QRegExp("\"*http://mt0.google.com/vt/lyrs=h@(\\d*)",Qt::CaseInsensitive);
+            reg=QRegExp("\"*https://mt0.google.com/vt/lyrs=h@(\\d*)",Qt::CaseInsensitive);
             if(reg.indexIn(html)!=-1)
             {
                 QStringList gc=reg.capturedTexts();
@@ -147,18 +148,19 @@ namespace core {
                 qDebug()<<"TryCorrectGoogleVersions, VersionGoogleLabels: "<<VersionGoogleLabels;
 #endif //DEBUG_URLFACTORY
             }
-            reg=QRegExp("\"*http://khm\\D?\\d.google.com/kh/v=(\\d*)",Qt::CaseInsensitive);
+//            reg=QRegExp("\"*https://khms\\D?\\d.google.com/kh\?v=(\\d*)",Qt::CaseInsensitive);
+            reg=QRegExp("\"*https://khms\\D?\\d.google.com/kh\\?v=(\\d*)",Qt::CaseInsensitive);
             if(reg.indexIn(html)!=-1)
             {
                 QStringList gc=reg.capturedTexts();
                 VersionGoogleSatellite = gc[1];
                 VersionGoogleSatelliteKorea = VersionGoogleSatellite;
                 VersionGoogleSatelliteChina = "s@" + VersionGoogleSatellite;
-
+                qDebug() << "hit satellite";
                 qDebug()<<"TryCorrectGoogleVersions, VersionGoogleSatellite: "<<VersionGoogleSatellite;
 
             }
-            reg=QRegExp("\"*http://mt0.google.com/vt/lyrs=t@(\\d*),r@(\\d*)",Qt::CaseInsensitive);
+            reg=QRegExp("\"*https://mt0.google.com/vt/lyrs=t@(\\d*),r@(\\d*)",Qt::CaseInsensitive);
             if(reg.indexIn(html)!=-1)
             {
                 QStringList gc=reg.capturedTexts();
@@ -189,7 +191,7 @@ namespace core {
                 QString sec2 = ""; // after &zoom=...
                 GetSecGoogleWords(pos,  sec1,  sec2);
                 TryCorrectGoogleVersions();
-
+                qDebug() << QString("http://%1%2.google.com/%3/lyrs=%4&hl=%5&x=%6%7&y=%8&z=%9&s=%10").arg(server).arg(GetServerNum(pos, 4)).arg(request).arg(VersionGoogleMap).arg(language).arg(pos.X()).arg(sec1).arg(pos.Y()).arg(zoom).arg(sec2);
                 return QString("http://%1%2.google.com/%3/lyrs=%4&hl=%5&x=%6%7&y=%8&z=%9&s=%10").arg(server).arg(GetServerNum(pos, 4)).arg(request).arg(VersionGoogleMap).arg(language).arg(pos.X()).arg(sec1).arg(pos.Y()).arg(zoom).arg(sec2);
             }
             break;
@@ -201,6 +203,8 @@ namespace core {
                 QString sec2 = ""; // after &zoom=...
                 GetSecGoogleWords(pos,  sec1,  sec2);
                 TryCorrectGoogleVersions();
+                qDebug() << QString("http://%1%2.google.com/%3/v=%4&hl=%5&x=%6%7&y=%8&z=%9&s=%10").arg(server).arg(GetServerNum(pos, 4)).arg(request).arg(VersionGoogleSatellite).arg(language).arg(pos.X()).arg(sec1).arg(pos.Y()).arg(zoom).arg(sec2);
+
                 return QString("http://%1%2.google.com/%3/v=%4&hl=%5&x=%6%7&y=%8&z=%9&s=%10").arg(server).arg(GetServerNum(pos, 4)).arg(request).arg(VersionGoogleSatellite).arg(language).arg(pos.X()).arg(sec1).arg(pos.Y()).arg(zoom).arg(sec2);
             }
             break;
@@ -513,11 +517,21 @@ namespace core {
             return QString("http://cyberjapandata.gsi.go.jp/xyz/relief/%1/%2/%3.png").arg(zoom).arg(pos.X()).arg(pos.Y());
         }
             break;
+       case MapType::Kokudo_HEIGHT1:
+        {
+            return QString("http://cyberjapandata.gsi.go.jp/xyz/dem_png/%1/%2/%3.png").arg(zoom).arg(pos.X()).arg(pos.Y());
+        }
+            break;
+        case MapType::Kokudo_HEIGHT2:
+        {
+            return QString("http://cyberjapandata.gsi.go.jp/xyz/demgm/%1/%2/%3.png").arg(zoom).arg(pos.X()).arg(pos.Y());
+        }
+            break;
 
         default:
             break;
         }
-
+        qDebug() << "not found " << type;
         return QString::null;
     }
     void UrlFactory::GetSecGoogleWords(const Point &pos,  QString &sec1, QString &sec2)

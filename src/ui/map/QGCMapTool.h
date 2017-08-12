@@ -2,6 +2,8 @@
 #define QGCMAPTOOL_H
 
 class UASInterface;
+class QGC3DMapWidget;
+
 #include <QWidget>
 #include <QMenu>
 #include <QTimer>
@@ -32,6 +34,8 @@ private slots:
     void gpsHdopChanged(double value, const QString&);
     void gpsFixChanged(int, const QString&);
     void satelliteCountChanged(int value, const QString&);
+    void change2dMap();
+    void change3dMap();
 
 private:
     void showEvent(QShowEvent* event);
@@ -41,6 +45,7 @@ private:
     Ui::QGCMapTool *ui;
 
     UASInterface* m_uasInterface;
+    QGC3DMapWidget* m_map3d;
 };
 
 #endif // QGCMAPTOOL_H

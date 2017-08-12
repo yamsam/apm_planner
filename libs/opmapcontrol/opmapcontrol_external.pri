@@ -5,8 +5,8 @@
 # HACK! BIG TIME!
 DEFINES += EXTERNAL_USE
 
-DEPENDPATH += $$PWD/src/core $$PWD/src/internals $$PWD/src/mapwidget $$PWD/src/internals/projections
-INCLUDEPATH += $$PWD/src/core $$PWD/src/internals $$PWD/src/internals/projections $$PWD/src/mapwidget
+DEPENDPATH += $$PWD/src/core $$PWD/src/internals $$PWD/src/mapwidget $$PWD/src/internals/projections $$PWD/src/3dmapwidget
+INCLUDEPATH += $$PWD/src/core $$PWD/src/internals $$PWD/src/internals/projections $$PWD/src/mapwidget $$PWD/src/3dmapwidget
 
 # Input
 HEADERS += libs/opmapcontrol/opmapcontrol.h \
@@ -61,7 +61,12 @@ HEADERS += libs/opmapcontrol/opmapcontrol.h \
            libs/opmapcontrol/src/internals/projections/platecarreeprojection.h \
            libs/opmapcontrol/src/internals/projections/platecarreeprojectionpergo.h \
            libs/opmapcontrol/src/mapwidget/waypointlineitem.h \
-    libs/opmapcontrol/src/mapwidget/omapconfiguration.h
+           libs/opmapcontrol/src/mapwidget/omapconfiguration.h \
+           libs/opmapcontrol/src/3dmapwidget/QGC3DMapWidget.h \
+           libs/opmapcontrol/src/3dmapwidget/surfacegraph.h \
+           libs/opmapcontrol/src/3dmapwidget/topographicseries.h \
+    $$PWD/src/3dmapwidget/waypoint3dicon.h
+
 FORMS += libs/opmapcontrol/src/mapwidget/mapripform.ui
 SOURCES += libs/opmapcontrol/src/core/alllayersoftype.cpp \
            libs/opmapcontrol/src/core/cache.cpp \
@@ -106,7 +111,12 @@ SOURCES += libs/opmapcontrol/src/core/alllayersoftype.cpp \
            libs/opmapcontrol/src/internals/projections/mercatorprojectionyandex.cpp \
            libs/opmapcontrol/src/internals/projections/platecarreeprojection.cpp \
            libs/opmapcontrol/src/internals/projections/platecarreeprojectionpergo.cpp \
-           libs/opmapcontrol/src/mapwidget/waypointlineitem.cpp
+           libs/opmapcontrol/src/mapwidget/waypointlineitem.cpp \
+           libs/opmapcontrol/src/3dmapwidget/QGC3DMapWidget.cpp \
+           libs/opmapcontrol/src/3dmapwidget/surfacegraph.cpp \
+           libs/opmapcontrol/src/3dmapwidget/topographicseries.cpp \
+    $$PWD/src/3dmapwidget/waypoint3dicon.cpp
+
 RESOURCES += libs/opmapcontrol/src/mapwidget/mapresources.qrc
 
 OTHER_FILES +=

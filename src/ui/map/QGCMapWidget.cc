@@ -9,6 +9,7 @@
 #include "ArduPilotMegaMAV.h"
 #include "WaypointNavigation.h"
 #include <QInputDialog>
+#include "rectlatlng.h"
 
 QGCMapWidget::QGCMapWidget(QWidget *parent) :
     mapcontrol::OPMapWidget(parent),
@@ -340,6 +341,7 @@ void QGCMapWidget::storeSettings()
     settings.endGroup();
     settings.sync();
 }
+
 
 void QGCMapWidget::mouseDoubleClickEvent(QMouseEvent* event)
 {
@@ -929,3 +931,4 @@ void QGCMapWidget::updateWaypointList(int uas)
         redrawWaypointLines(uas);
     }
 }
+

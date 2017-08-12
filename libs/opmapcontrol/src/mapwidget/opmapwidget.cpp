@@ -507,4 +507,113 @@ internals::PointLatLng OPMapWidget::destPoint(internals::PointLatLng source, dou
     return internals::PointLatLng(lat2 * rad_to_deg, lon2 * rad_to_deg);
 }
 
+QImage OPMapWidget::makeHeightMap(MapType::Types maptype)
+{
+    int width = core->GetsizeOfMapArea().Width();
+    int height = core->GetsizeOfMapArea().Height();
+
+    if (width < height){
+        width = height;
+    }else{
+        height = width;
+    }
+
+    QImage final((width * 2 + 1)  * 256, (height * 2 + 1)* 256, QImage::Format_ARGB32);
+    //qDebug() << "finale height, widht=" << height << "," << width;
+
+    QPainter painter(&final);
+
+    for(int i = -width; i <= width; i++){
+        for(int j = -height; j <= height; j++){
+            core->SettilePoint (core->GetcenterTileXYLocation());
+            core->SettilePoint(Point(core->GettilePoint().X()+ i,core->GettilePoint().Y()+j));
+            {
+                int x = (i + width) * 256;
+                int y = (j + height) * 256;
+
+                QByteArray img = OPMaps::Instance()->GetImageFrom(maptype, core->GettilePoint(), core->Zoom());
+                QPixmap pmap = PureImageProxy::FromStream(img);
+                QImage img0 = pmap.toImage();
+                QString filename( QString("test%1and%2.png").arg(x).arg(y));
+//                img0.save(filename);
+                painter.drawImage(x, y, img0);
+
+            }
+        }
+    }
+//    final.save("test.png");
+    return final;
+}
+
+internals::RectLatLng OPMapWidget::CurrentViewArea()
+{
+
+    core::Point center = core->GetcenterTileXYLocation();
+    int width = core->GetsizeOfMapArea().Width();
+    int height = core->GetsizeOfMapArea().Height();
+
+    core::Point pmin, pmax;
+    pmin.SetX(center.X() - width);
+    pmin.SetY(center.Y() - height);
+
+    pmax.SetX(center.X() + width);
+    pmax.SetY(center.Y() + height);
+
+    core::Point minPixel = core->Projection()->FromTileXYToPixel(pmin);
+    core::Point maxPixel = core->Projection()->FromTileXYToPixel(pmax);
+
+    internals::PointLatLng minp = core->Projection()->FromPixelToLatLng(minPixel, core->Zoom());
+    internals::PointLatLng maxp = core->Projection()->FromPixelToLatLng(maxPixel, core->Zoom());
+
+    //qDebug() << "viewarea=(" << minp.Lng() << maxp.Lng() << ")("<< minp.Lat() << maxp.Lat()  << ")";
+    return internals::RectLatLng::FromLTRB(minp.Lng(), maxp.Lat(), maxp.Lng(), minp.Lat());
+
+    //    return core->CurrentViewArea();
+}
+
+void OPMapWidget::CurrentViewArea(float& minLng, float& maxLng, float& minLat, float& maxLat)
+{
+
+    core::Point center = core->GetcenterTileXYLocation();
+    int width = core->GetsizeOfMapArea().Width();
+    int height = core->GetsizeOfMapArea().Height();
+
+    qDebug() << "map width = " << width;
+    qDebug() << "maxp height = " << height;
+
+    if (width < height){
+        width = height;
+    }else{
+        height = width;
+    }
+
+    core::Point pmin, pmax;
+    pmin.SetX(center.X() - width);
+    pmin.SetY(center.Y() - height);
+
+    pmax.SetX(center.X() + width +1);
+    pmax.SetY(center.Y() + height +1);
+
+    core::Point minPixel = core->Projection()->FromTileXYToPixel(pmin);
+    core::Point maxPixel = core->Projection()->FromTileXYToPixel(pmax);
+
+    internals::PointLatLng minp = core->Projection()->FromPixelToLatLng(minPixel, core->Zoom());
+    internals::PointLatLng maxp = core->Projection()->FromPixelToLatLng(maxPixel, core->Zoom());
+
+    if (minp.Lng() < maxp.Lng()){
+        minLng = minp.Lng();
+        maxLng = maxp.Lng();
+    }else{
+        minLng = maxp.Lng();
+        maxLng = minp.Lng();
+    }
+
+    if (minp.Lat() < maxp.Lat()){
+        minLat = minp.Lat();
+        maxLat = maxp.Lat();
+    }else{
+        minLat = maxp.Lat();
+        maxLat = minp.Lat();
+    }
+}
 }

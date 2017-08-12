@@ -104,7 +104,9 @@ namespace core {
             Kokudo_Pale = 6001,
             Kokudo_LCM25 = 6002,
             Kokudo_RELIEF = 6003,
-            Kokudo_ORT = 6004
+            Kokudo_ORT = 6004,
+            Kokudo_HEIGHT1 = 6005,
+            Kokudo_HEIGHT2 = 6006
 
         };
         static QString StrByType(Types const& value)

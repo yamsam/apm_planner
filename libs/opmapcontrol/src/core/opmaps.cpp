@@ -70,6 +70,7 @@ namespace core {
             qDebug()<<"Try Tile from memory:Size="<<TilesInMemory.MemoryCacheSize();
 #endif //DEBUG_GMAPS
             ret=GetTileFromMemoryCache(RawTile(type,pos,zoom));
+
             if(!ret.isEmpty())
             {
                 errorvars.lock();
@@ -132,6 +133,7 @@ namespace core {
                 qheader.setUrl(QUrl(url));
                 qheader.setRawHeader("User-Agent",UserAgent);
                 qheader.setRawHeader("Accept","*/*");
+
                 switch(type)
                 {
                 case MapType::GoogleMap:
@@ -209,6 +211,8 @@ namespace core {
                 case MapType::Kokudo_LCM25:
                 case MapType::Kokudo_RELIEF:
                 case MapType::Kokudo_ORT:
+                case MapType::Kokudo_HEIGHT1:
+                case MapType::Kokudo_HEIGHT2:
                     {
                     qheader.setRawHeader("Referrer", "http://www.xxx.xxx/");
                     }

@@ -112,7 +112,8 @@ DEPENDPATH += \
     libs/utils/src \
     libs/opmapcontrol \
     libs/opmapcontrol/src \
-    libs/opmapcontrol/src/mapwidget
+    libs/opmapcontrol/src/mapwidget \
+    libs/opmapcontrol/src/3dmapwidget
 
 INCLUDEPATH += \
     libs/utils \

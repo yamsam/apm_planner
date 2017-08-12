@@ -4,7 +4,9 @@
 #include <QMap>
 #include <QTimer>
 #include "../../../libs/opmapcontrol/opmapcontrol.h"
+#include "rectlatlng.h"
 
+//class RectLatlang;
 class UASInterface;
 class UASWaypointManager;
 class Waypoint;
@@ -126,6 +128,7 @@ public slots:
     void loadSettings();
     /** @brief Store the settings for this widget to disk */
     void storeSettings();
+
 
 protected slots:
     /** @brief Convert a map edit into a QGC waypoint event */

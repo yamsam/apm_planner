@@ -39,7 +39,9 @@ static const struct {
     { "\xe5\x9c\xb0\xe7\x90\x86\xe9\x99\xa2\xe3\x82\xbf\xe3\x82\xa4\xe3\x83\xab\xe3\x80\x80\xe6\xb7\xa1\xe8\x89\xb2\xe5\x9c\xb0\xe5\x9b\xb3", MapType::Kokudo_Pale},
     { "\xe5\x9c\xb0\xe7\x90\x86\xe9\x99\xa2\xe3\x82\xbf\xe3\x82\xa4\xe3\x83\xab\xe3\x80\x80\xe5\x86\x99\xe7\x9c\x9f", MapType::Kokudo_ORT},
     { "\xe5\x9c\xb0\xe7\x90\x86\xe9\x99\xa2\xe3\x82\xbf\xe3\x82\xa4\xe3\x83\xab\xe3\x80\x80\xe8\x89\xb2\xe5\x88\xa5\xe6\xa8\x99\xe9\xab\x98\xe5\x9b\xb3", MapType::Kokudo_RELIEF},
-    { "\xe5\x9c\xb0\xe7\x90\x86\xe9\x99\xa2\xe3\x82\xbf\xe3\x82\xa4\xe3\x83\xab\xe3\x80\x80\xe5\x9c\x9f\xe5\x9c\xb0\xe6\x9d\xa1\xe4\xbb\xb6", MapType::Kokudo_LCM25}
+    { "\xe5\x9c\xb0\xe7\x90\x86\xe9\x99\xa2\xe3\x82\xbf\xe3\x82\xa4\xe3\x83\xab\xe3\x80\x80\xe5\x9c\x9f\xe5\x9c\xb0\xe6\x9d\xa1\xe4\xbb\xb6", MapType::Kokudo_LCM25},
+    { "Kokudo HEIGHT1", MapType::Kokudo_HEIGHT1},
+    { "Kokudo HEIGHT2", MapType::Kokudo_HEIGHT2}
 };
 
 static const size_t sNumMapTypes = sizeof(sMapTypes) / sizeof(sMapTypes[0]);
@@ -60,6 +62,9 @@ void QGCMapToolBar::setMap(QGCMapWidget* map)
         connect(map, SIGNAL(OnTileLoadComplete()), this, SLOT(tileLoadEnd()));
         connect(map, SIGNAL(OnTilesStillToLoad(int)), this, SLOT(tileLoadProgress(int)));
         connect(ui->ripMapButton, SIGNAL(clicked()), map, SLOT(cacheVisibleRegion()));
+
+        connect(ui->HeightButton, SIGNAL(clicked()), this, SIGNAL(change3dMap()));
+        connect(ui->mapButton, SIGNAL(clicked()), this, SIGNAL(change2dMap()));
 
         map->setFollowUAVEnabled(ui->followPushButton->isChecked());
         connect(ui->followPushButton, SIGNAL(clicked(bool)), map, SLOT(setFollowUAVEnabled(bool)));
@@ -306,3 +311,4 @@ QGCMapToolBar::~QGCMapToolBar()
     delete mapTypesGroup;
     // FIXME Delete all actions
 }
+
